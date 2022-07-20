@@ -27,12 +27,8 @@ jobs:
          export AWS_SECRET_ACCESS_KEY=$(echo $Cross_Acc_Role | jq -r .Credentials.SecretAccessKey)
          export AWS_SESSION_TOKEN=$(echo $Cross_Acc_Role | jq -r .Credentials.SessionToken)
       - name: Cluster-context
-        run: aws eks update-kubeconfig --name sailor-community-test --region "ap-south-1"
-  Helm-install:
-    needs: [Credentials]
-    runs-on: ubuntu-latest
-    steps:
-      - name: Install Discourse
-        run: |
-         helm repo add bitnami https://charts.bitnami.com/bitnami
-         helm install discourse bitnami/discourse
+        run: | 
+             aws eks update-kubeconfig --name sailor-community-test --region "ap-south-1"
+             helm repo add bitnami https://charts.bitnami.com/bitnami
+             helm install discourse bitnami/discourse
+      
