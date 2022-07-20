@@ -25,6 +25,8 @@ jobs:
   Credentials:
     runs-on: ubuntu-latest
     steps:
+      - name: default profile
+        run: aws configure --profile "default"
       - name: Configure AWS Credentials
         uses: aws-actions/configure-aws-credentials@v1
         with:
