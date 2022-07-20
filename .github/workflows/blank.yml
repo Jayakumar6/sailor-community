@@ -25,14 +25,14 @@ jobs:
   Credentials:
     runs-on: ubuntu-latest
     steps:
-      - name: default profile
-        run: aws configure --profile "default"
       - name: Configure AWS Credentials
         uses: aws-actions/configure-aws-credentials@v1
         with:
          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}      
          aws-region: ap-south-1
+      - name: default profile
+        run: aws configure --profile "default"
       - name: Login credentials
         run: |
          Cross_Acc_Role=$(aws sts assume-role --role-arn arn:aws:iam::779527285137:role/AWSdevopscerttaskrole --role-session-name AWSCLI-Session --profile default ) 
